@@ -19,9 +19,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Provide defaults for required environment variables
 env = Env(
-    SECRET_KEY=(str, "fj=(kr6n*1@2wolp1=lb*gl0$3j=toui#+)g2ako3w&y4fiego"),
+    SECRET_KEY=(str, 'fj=(kr6n*1@2wolp1=lb*gl0$3j=toui#+)g2ako3w&y4fiego'),
     DEBUG=(bool, True),
-    ALLOWED_HOSTS=(list, [])
+    ALLOWED_HOSTS=(list, []),
+    DATABASE_URL=(str, f'sqlite:////{BASE_DIR}/db.sqlite3')
 )
 
 # Source environment variables from .env file
@@ -85,10 +86,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.db()
 }
 
 
