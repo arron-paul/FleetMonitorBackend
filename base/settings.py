@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_filters',
     'app',
     'drf_yasg'
 ]
@@ -100,6 +101,14 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 DATABASES = {
     'default': env.db()
+}
+
+# Rest Framework
+# https://www.django-rest-framework.org/tutorial/quickstart/
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    )
 }
 
 # Yet Another Swagger Generator
