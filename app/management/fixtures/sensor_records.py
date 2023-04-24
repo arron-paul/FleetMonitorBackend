@@ -6,7 +6,7 @@ class SensorRecordFixture:
     """
     Bare-bones fixture data that represents a SensorRecord
     """
-    timestamp: str
+    date: str
     sensor_name: str
     value: float
 
