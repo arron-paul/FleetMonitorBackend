@@ -1,8 +1,5 @@
 from dataclasses import dataclass
 
-from app.units import UNIT_CHOICE_CELSIUS, UNIT_CHOICE_FAHRENHEIT
-
-
 @dataclass
 class SensorFixture:
     """
@@ -20,7 +17,7 @@ class SensorFixture:
 
 
 SENSOR_FIXTURES = [
-    SensorFixture("Sensor 1", UNIT_CHOICE_CELSIUS),
-    SensorFixture("Sensor 2", UNIT_CHOICE_CELSIUS),
-    SensorFixture("Sensor 3", UNIT_CHOICE_FAHRENHEIT)
+    SensorFixture("Sensor 1", "Celsius"),
+    SensorFixture("Sensor 2", "Celsius"),
+    SensorFixture("Sensor 3", "Fahrenheit")
 ]
