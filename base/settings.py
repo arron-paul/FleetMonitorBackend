@@ -19,6 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Provide defaults for required environment variables
 env = Env(
+    PROJECT_NAME=(str, 'Django Interview Question'),
+    PROJECT_DESCRIPTION=(str, 'Django API from which numerical data from Sensors & SensorRecords can be retrieved and stored'),
+    PROJECT_VERSION=(str, '0.0.1'),
     SECRET_KEY=(str, 'fj=(kr6n*1@2wolp1=lb*gl0$3j=toui#+)g2ako3w&y4fiego'),
     DEBUG=(bool, True),
     ALLOWED_HOSTS=(list, []),
@@ -40,6 +43,13 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
+# PROJECT_NAME, PROJECT_DESCRIPTION, PROJECT_VERSION can be used throughout the app
+
+PROJECT_NAME = env('PROJECT_NAME')
+PROJECT_DESCRIPTION = env('PROJECT_DESCRIPTION')
+PROJECT_VERSION = env('PROJECT_VERSION')
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,7 +60,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'app'
+    'app',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [
@@ -91,6 +102,11 @@ DATABASES = {
     'default': env.db()
 }
 
+# Yet Another Swagger Generator
+# https://drf-yasg.readthedocs.io/en/stable/
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
