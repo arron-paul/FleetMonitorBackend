@@ -16,6 +16,8 @@ class SensorRecordSerializer(serializers.ModelSerializer):
     """
     Serializer for the SensorRecord model
     """
+    sensor_name = serializers.ReadOnlyField(source='sensor.name')
+
     class Meta:
         model = SensorRecord
-        fields = ['timestamp', 'sensor', 'value']
+        fields = ['date', 'sensor_name', 'value']
