@@ -18,5 +18,5 @@ class SensorRecord(models.Model):
     objects = models.Manager()
     id = models.AutoField(primary_key=True)
     sensor = models.ForeignKey(Sensor, on_delete=models.CASCADE)
-    timestamp = models.DateTimeField()
+    date = models.DateTimeField()
     value = models.FloatField()
