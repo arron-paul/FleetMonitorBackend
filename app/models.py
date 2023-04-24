@@ -1,5 +1,7 @@
 from django.db import models
 
+from app.units import UNIT_CHOICES
+
 
 class Sensor(models.Model):
     """
@@ -8,7 +10,7 @@ class Sensor(models.Model):
     objects = models.Manager()
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, unique=True)
-    unit = models.CharField(max_length=32)  # todo: enum of choices preferable
+    unit = models.SmallIntegerField(choices=UNIT_CHOICES)
 
 
 class SensorRecord(models.Model):
