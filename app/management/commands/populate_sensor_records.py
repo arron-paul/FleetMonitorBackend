@@ -11,7 +11,7 @@ class Command(BaseCommand):
         for sensor_record_fixture in SensorRecordFixture.get_fixtures():
             SensorRecord.objects.create(
                 sensor=Sensor.objects.get(name=sensor_record_fixture.sensor_name),
-                timestamp=sensor_record_fixture.timestamp,
+                date=sensor_record_fixture.date,
                 value=sensor_record_fixture.value
             )
             self.stdout.write(f"Created Sensor Record for `{sensor_record_fixture.sensor_name}`")
