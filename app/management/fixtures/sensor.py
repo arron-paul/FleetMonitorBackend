@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+from app.models import UNIT_CHOICES_CELSIUS, UNIT_CHOICES_FAHRENHEIT
+
 
 @dataclass
 class SensorFixture:
@@ -18,12 +20,12 @@ class SensorFixture:
 
 
 SENSOR_FIXTURES = [
-    SensorFixture("Front Temperature Sensor", "Celsius"),
-    SensorFixture("Transformer Temperature Sensor", "Fahrenheit"),
-    SensorFixture("Generator Temperature Sensor", "Celsius"),
-    SensorFixture("Gearbox Temperature Sensor", "Fahrenheit"),
-    SensorFixture("Blade Temperature Sensor", "Fahrenheit"),
-    SensorFixture("Brake Temperature Sensor", "Celsius"),
-    SensorFixture("Bearing Temperature Sensor", "Celsius"),
-    SensorFixture("Hydraulic Temperature Sensor", "Celsius"),
+    SensorFixture("Front Temperature Sensor", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Transformer Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Generator Temperature Sensor", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Gearbox Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Blade Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Brake Temperature Sensor", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Bearing Temperature Sensor", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Hydraulic Temperature Sensor", UNIT_CHOICES_CELSIUS)
 ]

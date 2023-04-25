@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from app.api.fields import TemperatureUnitChoiceField
 from app.models import Sensor, SensorRecord
 
 
@@ -7,6 +8,11 @@ class SensorSerializer(serializers.ModelSerializer):
     """
     Serializer for the Sensor model
     """
+
+    # Unit internal value is an integer, override unit field
+    # such that it returns the unit choice string representation
+    unit = TemperatureUnitChoiceField()
+
     class Meta:
         model = Sensor
         fields = ['name', 'unit']
@@ -16,8 +22,10 @@ class SensorRecordSerializer(serializers.ModelSerializer):
     """
     Serializer for the SensorRecord model
     """
-    sensor_name = serializers.ReadOnlyField(source='sensor.name')
+
+    # Use sensor name instead of PK
+    sensor = serializers.ReadOnlyField(source='sensor.name')
 
     class Meta:
         model = SensorRecord
-        fields = ['date', 'sensor_name', 'value']
+        fields = ['date', 'sensor', 'value']
