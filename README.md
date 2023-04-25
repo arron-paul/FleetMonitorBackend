@@ -66,7 +66,27 @@ python manage.py populate
 python manage.py runserver
 ```
 
-## API
+### Navigating the REST API
+
+#### Manipulating `Sensor` entries
+
+`todo: finish`
+
+#### Manipulating `SensorRecord` entries
+
+`todo: finish`
+
+#### Filtering `SensorRecord` entries
+
+Each SensorRecord can be filtered using these query parameters:
+
+- `sensor` the unique name of the `Sensor` associated with the `SensorRecord`
+- `date_from` the starting date of `SensorRecord` entries 
+- `date_to` the end date of `SensorRecord` entries
+- `value_min` the minimum value of the `SensorRecord` entries
+- `value_max` the maximum value of the `SensorRecord` entries
+
+Examples:
 
 ```commandline
 HTTP GET /api/data/?date_from=2020-01-01T00:00:00Z&date_to=2021-01-01T00:00:00Z
