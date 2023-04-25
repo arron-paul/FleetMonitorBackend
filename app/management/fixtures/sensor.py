@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class SensorFixture:
     """
@@ -17,7 +18,12 @@ class SensorFixture:
 
 
 SENSOR_FIXTURES = [
-    SensorFixture("Sensor 1", "Celsius"),
-    SensorFixture("Sensor 2", "Celsius"),
-    SensorFixture("Sensor 3", "Fahrenheit")
+    SensorFixture("Front Temperature Sensor", "Celsius"),
+    SensorFixture("Transformer Temperature Sensor", "Fahrenheit"),
+    SensorFixture("Generator Temperature Sensor", "Celsius"),
+    SensorFixture("Gearbox Temperature Sensor", "Fahrenheit"),
+    SensorFixture("Blade Temperature Sensor", "Fahrenheit"),
+    SensorFixture("Brake Temperature Sensor", "Celsius"),
+    SensorFixture("Bearing Temperature Sensor", "Celsius"),
+    SensorFixture("Hydraulic Temperature Sensor", "Celsius"),
 ]
