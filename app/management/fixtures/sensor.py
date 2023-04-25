@@ -20,12 +20,12 @@ class SensorFixture:
 
 
 SENSOR_FIXTURES = [
-    SensorFixture("Front Temperature Sensor", UNIT_CHOICES_CELSIUS),
-    SensorFixture("Transformer Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
-    SensorFixture("Generator Temperature Sensor", UNIT_CHOICES_CELSIUS),
-    SensorFixture("Gearbox Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
-    SensorFixture("Blade Temperature Sensor", UNIT_CHOICES_FAHRENHEIT),
-    SensorFixture("Brake Temperature Sensor", UNIT_CHOICES_CELSIUS),
-    SensorFixture("Bearing Temperature Sensor", UNIT_CHOICES_CELSIUS),
-    SensorFixture("Hydraulic Temperature Sensor", UNIT_CHOICES_CELSIUS)
+    SensorFixture("Front Temperature", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Transformer Temperature", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Generator Temperature", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Gearbox Temperature", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Blade Temperature", UNIT_CHOICES_FAHRENHEIT),
+    SensorFixture("Brake Temperature", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Main Bearing Temperature", UNIT_CHOICES_CELSIUS),
+    SensorFixture("Hydraulic Temperature", UNIT_CHOICES_CELSIUS)
 ]
