@@ -24,8 +24,14 @@ class SensorRecordSerializer(serializers.ModelSerializer):
     """
 
     # Use sensor name instead of PK
-    sensor = serializers.ReadOnlyField(source='sensor.name')
+    sensor = serializers.CharField(source='sensor.name')
 
     class Meta:
         model = SensorRecord
         fields = ['date', 'sensor', 'value']
+
+    def create(self, validated_data):
+        # todo: think of a better way to do this, shouldn't need to override `create`
+        sensor_field = validated_data.pop('sensor')
+        sensor_obj = Sensor.objects.get(name=sensor_field['name'])
+        return SensorRecord.objects.create(sensor=sensor_obj, **validated_data)
