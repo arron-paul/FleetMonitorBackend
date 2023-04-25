@@ -65,3 +65,17 @@ python manage.py populate
 ```commandline
 python manage.py runserver
 ```
+
+## API
+
+```commandline
+HTTP GET /api/data/?date_from=2020-01-01T00:00:00Z&date_to=2021-01-01T00:00:00Z
+```
+
+```commandline
+HTTP GET /api/data/?sensor=Front%20Temperature%20Sensor
+```
+
+```commandline
+HTTP GET /api/data/?value_min=10&value_max=50
+```
