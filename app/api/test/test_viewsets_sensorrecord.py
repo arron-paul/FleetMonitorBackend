@@ -4,9 +4,6 @@ from rest_framework.test import APITestCase
 
 from app.models import Sensor, SensorRecord, UNIT_CHOICES_CELSIUS
 
-# todo: APITestCases need to know about the base path
-BASE_PATH = 'http://127.0.0.1:8000'
-
 
 class TestSensorRecordViewSet(APITestCase):
 
@@ -26,7 +23,7 @@ class TestSensorRecordViewSet(APITestCase):
         value = 12.0
 
         response: Response = self.client.post(
-            path=f'{BASE_PATH}/api/data/',
+            path=f'/api/data/',
             format='json',
             data={
                 'sensor': name,
@@ -49,7 +46,7 @@ class TestSensorRecordViewSet(APITestCase):
             value=12.0
         )
 
-        response: Response = self.client.get(path=f'{BASE_PATH}/api/data/{created_sensor_record.id}/', format='json')
+        response: Response = self.client.get(path=f'/api/data/{created_sensor_record.id}/', format='json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
 
     def test_list_all_sensor_records(self) -> None:
@@ -60,6 +57,6 @@ class TestSensorRecordViewSet(APITestCase):
         for i in range(sensor_record_count):
             SensorRecord.objects.create(sensor=self.sensor, date="2023-04-25T17:01:05.139017Z", value=12)
 
-        list_sensors_response: Response = self.client.get(f'{BASE_PATH}/api/data/')
+        list_sensors_response: Response = self.client.get(f'/api/data/')
         self.assertEqual(status.HTTP_200_OK, list_sensors_response.status_code)
         self.assertEqual(len(list(list_sensors_response.data)), sensor_record_count)

@@ -4,9 +4,6 @@ from rest_framework.test import APITestCase
 
 from app.models import Sensor, UNIT_CHOICES_CELSIUS, UNIT_CHOICES_FAHRENHEIT
 
-# todo: APITestCases need to know about the base path
-BASE_PATH = 'http://127.0.0.1:8000'
-
 
 class TestSensorViewSet(APITestCase):
 
@@ -20,7 +17,7 @@ class TestSensorViewSet(APITestCase):
         sensor_unit: str = 'Celsius'
 
         response: Response = self.client.post(
-            path=f'{BASE_PATH}/api/sensor/',
+            path=f'/api/sensor/',
             format='json',
             data={
                 'name': sensor_name,
@@ -43,10 +40,10 @@ class TestSensorViewSet(APITestCase):
             'unit': sensor_unit
         }
 
-        first_response: Response = self.client.post(path=f'{BASE_PATH}/api/sensor/', format='json', data=payload)
+        first_response: Response = self.client.post(path=f'/api/sensor/', format='json', data=payload)
         self.assertEqual(status.HTTP_201_CREATED, first_response.status_code)
 
-        second_response: Response = self.client.post(path=f'{BASE_PATH}/api/sensor/', format='json', data=payload)
+        second_response: Response = self.client.post(path=f'/api/sensor/', format='json', data=payload)
         self.assertEqual(status.HTTP_400_BAD_REQUEST, second_response.status_code)
 
     def test_get_sensor(self) -> None:
@@ -58,7 +55,7 @@ class TestSensorViewSet(APITestCase):
 
         created_sensor: Sensor = Sensor.objects.create(name=sensor_name, unit=sensor_unit)
 
-        response: Response = self.client.get(f'{BASE_PATH}/api/sensor/{created_sensor.id}/')
+        response: Response = self.client.get(f'/api/sensor/{created_sensor.id}/')
 
         expected_name: str = response.data.get('name')
         expected_unit: str = response.data.get('unit')
@@ -77,6 +74,6 @@ class TestSensorViewSet(APITestCase):
             sensor_unit: str = UNIT_CHOICES_CELSIUS
             Sensor.objects.create(name=sensor_name, unit=sensor_unit)
 
-        list_sensors_response: Response = self.client.get(f'{BASE_PATH}/api/sensor/')
+        list_sensors_response: Response = self.client.get(f'/api/sensor/')
         self.assertEqual(status.HTTP_200_OK, list_sensors_response.status_code)
         self.assertEqual(len(list(list_sensors_response.data)), sensor_count)
