@@ -16,7 +16,7 @@ class Sensor(models.Model):
     objects = models.Manager()
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, unique=True)
-    unit = models.SmallIntegerField(choices=UNIT_CHOICES)
+    unit = models.PositiveSmallIntegerField(choices=UNIT_CHOICES)
 
 
 class SensorRecord(models.Model):
