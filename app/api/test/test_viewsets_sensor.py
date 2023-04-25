@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.test import APITestCase
 
-from app.models import Sensor
+from app.models import Sensor, UNIT_CHOICES_CELSIUS, UNIT_CHOICES_FAHRENHEIT
 
 # todo: APITestCases need to know about the base path
 BASE_PATH = 'http://127.0.0.1:8000'
@@ -54,7 +54,7 @@ class TestSensorViewSet(APITestCase):
         # Spec: You should be able to retrieve information about a specific sensor at /api/sensor/<sensor_id>/
 
         sensor_name: str = 'Main Bearing Temperature'
-        sensor_unit: str = 'Celsius'
+        sensor_unit: int = UNIT_CHOICES_FAHRENHEIT
 
         created_sensor: Sensor = Sensor.objects.create(name=sensor_name, unit=sensor_unit)
 
@@ -65,7 +65,7 @@ class TestSensorViewSet(APITestCase):
 
         self.assertEqual(status.HTTP_200_OK, response.status_code)
         self.assertEqual(expected_name, sensor_name)
-        self.assertEqual(expected_unit, sensor_unit)
+        self.assertEqual(expected_unit, 'Fahrenheit')
 
     def test_list_all_sensors(self) -> None:
 
@@ -74,7 +74,7 @@ class TestSensorViewSet(APITestCase):
         sensor_count: int = 12
         for i in range(sensor_count):
             sensor_name: str = f'Main Bearing Temperature {i}'
-            sensor_unit: str = 'Celsius'
+            sensor_unit: str = UNIT_CHOICES_CELSIUS
             Sensor.objects.create(name=sensor_name, unit=sensor_unit)
 
         list_sensors_response: Response = self.client.get(f'{BASE_PATH}/api/sensor/')

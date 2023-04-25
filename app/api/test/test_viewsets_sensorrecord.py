@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.test import APITestCase
 
-from app.models import Sensor, SensorRecord
+from app.models import Sensor, SensorRecord, UNIT_CHOICES_CELSIUS
 
 # todo: APITestCases need to know about the base path
 BASE_PATH = 'http://127.0.0.1:8000'
@@ -12,7 +12,7 @@ class TestSensorRecordViewSet(APITestCase):
 
     def setUp(self) -> None:
         sensor_name: str = 'Main Bearing Temperature'
-        sensor_unit: str = 'Celsius'
+        sensor_unit: str = UNIT_CHOICES_CELSIUS
         self.sensor: Sensor = Sensor.objects.create(name=sensor_name, unit=sensor_unit)
         self.sensor_id = self.sensor.id
 
