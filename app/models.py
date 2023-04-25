@@ -1,8 +1,8 @@
 from django.db import models
 
 # Possible choices for Sensor temperature `unit`
-UNIT_CHOICES_CELSIUS = 1
-UNIT_CHOICES_FAHRENHEIT = 2
+UNIT_CHOICES_CELSIUS = 0
+UNIT_CHOICES_FAHRENHEIT = 1
 UNIT_CHOICES = (
     (UNIT_CHOICES_CELSIUS, 'Celsius'),
     (UNIT_CHOICES_FAHRENHEIT, 'Fahrenheit')
