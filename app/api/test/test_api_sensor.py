@@ -2,7 +2,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.test import APITestCase
 
-from app.models import Sensor, TEMPERATURE_CHOICE_FAHRENHEIT, TEMPERATURE_CHOICE_CELSIUS
+from app.models import Sensor
+from app.temperature import TEMPERATURE_CHOICE_FAHRENHEIT, TEMPERATURE_CHOICE_CELSIUS
 
 
 class TestSensorViewSet(APITestCase):

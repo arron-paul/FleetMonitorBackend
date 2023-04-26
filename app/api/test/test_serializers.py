@@ -1,7 +1,8 @@
 from rest_framework.test import APITestCase
 
 from app.api.serializers import SensorSerializer, SensorRecordSerializer
-from app.models import Sensor, SensorRecord, TEMPERATURE_CHOICE_CELSIUS
+from app.models import Sensor, SensorRecord
+from app.temperature import TEMPERATURE_CHOICE_CELSIUS
 
 
 class TestSensorViewSet(APITestCase):
