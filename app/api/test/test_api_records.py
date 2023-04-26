@@ -2,8 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.test import APITestCase
 
-from app.models import Sensor, SensorRecord
-from app.temperature import TEMPERATURE_CHOICE_CELSIUS
+from app.models import Sensor, SensorRecord, TEMPERATURE_CHOICE_CELSIUS
 
 
 class TestSensorRecordViewSet(APITestCase):
@@ -41,7 +40,6 @@ class TestSensorRecordViewSet(APITestCase):
         created_record: SensorRecord = SensorRecord.objects.create(
             sensor=self.sensor,
             date="2023-04-25T17:01:05.139017Z",
-            unit=TEMPERATURE_CHOICE_CELSIUS,
             value=12.0)
         response: Response = self.client.get(path=f'/api/data/{created_record.id}/', format='json')
         self.assertEqual(status.HTTP_200_OK, response.status_code)
@@ -55,7 +53,6 @@ class TestSensorRecordViewSet(APITestCase):
             SensorRecord.objects.create(
                 sensor=self.sensor,
                 date="2023-04-25T17:01:05.139017Z",
-                unit=TEMPERATURE_CHOICE_CELSIUS,
                 value=12)
         list_sensors_response: Response = self.client.get(f'/api/data/')
         self.assertEqual(status.HTTP_200_OK, list_sensors_response.status_code)

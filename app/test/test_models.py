@@ -3,8 +3,7 @@ from django.utils import timezone
 
 from django.db import IntegrityError
 from django.test import TestCase
-from app.models import Sensor, SensorRecord
-from app.temperature import TEMPERATURE_CHOICE_CELSIUS, TEMPERATURE_CHOICE_FAHRENHEIT
+from app.models import Sensor, SensorRecord, TEMPERATURE_CHOICE_CELSIUS, TEMPERATURE_CHOICE_FAHRENHEIT
 
 
 class TestModel(TestCase):
