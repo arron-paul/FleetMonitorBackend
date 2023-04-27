@@ -1,11 +1,11 @@
 from django.db import models
 
 # Possible choices for Sensor temperature `unit`
-UNIT_CHOICES_CELSIUS = 0
-UNIT_CHOICES_FAHRENHEIT = 1
-UNIT_CHOICES = (
-    (UNIT_CHOICES_CELSIUS, 'Celsius'),
-    (UNIT_CHOICES_FAHRENHEIT, 'Fahrenheit')
+TEMPERATURE_CHOICE_CELSIUS = 0
+TEMPERATURE_CHOICE_FAHRENHEIT = 1
+TEMPERATURE_CHOICES = (
+    (TEMPERATURE_CHOICE_CELSIUS, 'Celsius'),
+    (TEMPERATURE_CHOICE_FAHRENHEIT, 'Fahrenheit')
 )
 
 
@@ -16,7 +16,7 @@ class Sensor(models.Model):
     objects = models.Manager()
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=128, unique=True)
-    unit = models.PositiveSmallIntegerField(choices=UNIT_CHOICES)
+    unit = models.PositiveSmallIntegerField(choices=TEMPERATURE_CHOICES)
 
 
 class SensorRecord(models.Model):

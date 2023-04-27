@@ -51,14 +51,18 @@ Modify `.env`…
 python manage.py migrate
 ```
 
-- Create a Superuser…
+- Create a Superuser _(optional)_…
 ```commandline
 python manage.py createsuperuser
 ```
 
-- Populate `Sensors` and `SensorRecords` _(optional)_…
+- Populate sensors and sensor records with sample data _(optional)_…
 ```commandline
 python manage.py populate
+```
+
+```commandline
+python manage.py populate --records 100
 ```
 
 ### Run the App
@@ -68,23 +72,68 @@ python manage.py runserver
 
 ### Navigating the REST API
 
-#### Manipulating `Sensor` entries
+#### Manipulating sensors
 
-`todo: finish`
+List all sensors
+```commandline
+HTTP GET /api/sensor
+```
 
-#### Manipulating `SensorRecord` entries
+Creating a sensor
+```commandline
+HTTP POST /api/sensor
+{
+    "name": "Main Bearing Temperature"
+    "unit": "Celsius"
+}
+```
 
-`todo: finish`
+Updating a sensor
+```commandline
+HTTP PATCH /api/sensor/<sensor_id>/
+{
+    "unit": "Fahrenheit"
+}
+```
 
-#### Filtering `SensorRecord` entries
+Deleting a sensor
+```commandline
+HTTP DELETE /api/sensor/<sensor_id>/
+```
 
-Each SensorRecord can be filtered using these query parameters:
 
-- `sensor` the unique name of the `Sensor` associated with the `SensorRecord`
-- `date_from` the starting date of `SensorRecord` entries 
-- `date_to` the end date of `SensorRecord` entries
-- `value_min` the minimum value of the `SensorRecord` entries
-- `value_max` the maximum value of the `SensorRecord` entries
+#### Manipulating sensor records
+
+List all sensor records
+```commandline
+HTTP GET /api/data
+```
+
+Creating a sensor record
+```commandline
+HTTP POST /api/data
+{
+    "sensor": "Main Bearing Temperature",
+    "date": "2023-04-25T17:01:06",
+    "value": 64.0
+}
+```
+
+Deleting a sensor record
+```commandline
+HTTP DELETE /api/data/<record_id>/
+```
+
+
+#### Filtering sensor records
+
+Each sensor record can be filtered using these query parameters:
+
+- `sensor` the unique name of the sensor associated with the sensor record.
+- `date_from` the starting date of sensor record entries.
+- `date_to` the end date of sensor record entries.
+- `value_min` the minimum recorded value of the sensor record entries.
+- `value_max` the maximum recorded value of the sensor record entries.
 
 Examples:
 
@@ -98,4 +147,8 @@ HTTP GET /api/data/?sensor=Front%20Temperature%20Sensor
 
 ```commandline
 HTTP GET /api/data/?value_min=10&value_max=50
+```
+
+```commandline
+HTTP GET /api/data/?value_min=10&value_max=50&date_from=2020-01-01T00:00:00Z&date_to=2021-01-01T00:00:00Z
 ```

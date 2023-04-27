@@ -1,27 +1,25 @@
 from rest_framework import serializers
 
-from app.models import UNIT_CHOICES
+from app.models import TEMPERATURE_CHOICES
 
 
 class TemperatureUnitChoiceField(serializers.Field):
     """
-    Custom DRF Field to convert between internal value of `unit` and it's
-    string representation as defined in UNIT_CHOICES
-    https://www.django-rest-framework.org/api-guide/fields/#custom-fields
+    Custom field to convert between internal value of the sensor unit,
+    and it's string representation.
     """
 
-    def to_representation(self, unit_internal_value: int):
+    def to_representation(self, internal_value: int):
         """
-        Converts the internal value of the `unit` field to its string representation.
+        Converts internal value of `unit` field to its string representation.
         """
-        return dict(UNIT_CHOICES)[unit_internal_value]
+        return dict(TEMPERATURE_CHOICES)[internal_value]
 
-    def to_internal_value(self, choice: str):
+    def to_internal_value(self, string_representation: str):
         """
-        Converts the string representation of the `unit` field, such as 'Celsius'
-        back to its stored integer value.
+        Converts string representation of `unit` field to its internal integer value.
         """
-        for unit_choice in UNIT_CHOICES:
-            if unit_choice[1] == choice:
+        for unit_choice in TEMPERATURE_CHOICES:
+            if unit_choice[1] == string_representation:
                 return unit_choice[0]
-        raise serializers.ValidationError('Invalid unit choice')
+        raise serializers.ValidationError('temperature unit not supported')

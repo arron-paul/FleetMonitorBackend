@@ -1,13 +1,11 @@
-from django_filters import rest_framework as filters, Filter
+from django_filters import rest_framework as filters
 
 from app.models import SensorRecord
 
 
 class SensorRecordFilter(filters.FilterSet):
     """
-    FilterSet that provides filtering of properties for SensorRecord using query parameters.
-    https://www.django-rest-framework.org/api-guide/filtering/#setting-filter-backends
-    https://django-filter.readthedocs.io/en/stable/guide/rest_framework.html#integration-with-drf
+    Provides filtering of sensor record fields using query parameters
     """
     sensor = filters.CharFilter(field_name='sensor__name')
     date_from = filters.DateTimeFilter(field_name='date', lookup_expr='gte')

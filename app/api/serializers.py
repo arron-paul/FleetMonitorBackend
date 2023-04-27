@@ -23,15 +23,16 @@ class SensorRecordSerializer(serializers.ModelSerializer):
     Serializer for the SensorRecord model
     """
 
-    # Use sensor name instead of PK
     sensor = serializers.CharField(source='sensor.name')
 
     class Meta:
         model = SensorRecord
-        fields = ['date', 'sensor', 'value']
+        fields = ['sensor', 'date', 'value']
 
     def create(self, validated_data):
-        # todo: think of a better way to do this, shouldn't need to override `create`
-        sensor_field = validated_data.pop('sensor')
-        sensor_obj = Sensor.objects.get(name=sensor_field['name'])
-        return SensorRecord.objects.create(sensor=sensor_obj, **validated_data)
+        # We are providing the sensor name instead of PK
+        sensor_name: str = validated_data.pop('sensor').get('name')
+        if sensor_name is None:
+            raise AssertionError('Sensor name is required')
+        sensor: Sensor = Sensor.objects.get(name=sensor_name)
+        return SensorRecord.objects.create(sensor=sensor, **validated_data)
