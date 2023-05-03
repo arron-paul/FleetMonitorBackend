@@ -88,7 +88,7 @@ HTTP POST /api/sensor
 }
 ```
 
-Updating a sensor
+Updating a sensor 🤔
 ```commandline
 HTTP PATCH /api/sensor/<sensor_id>/
 {
